@@ -1,4 +1,14 @@
 import * as request from 'web-request'
+import AccessTokenResponseInterface from './interfaces/access-token-response-interface'
+import AuthClientInterface from './interfaces/auth-client-interface'
+import AuthUserDataInterface from './interfaces/user/auth-user-data-interface'
+import TenantRegistrationResultInterface from './interfaces/tenant/tenant-registration-result-interface'
+import TenantVerificationResponseInterface from './interfaces/tenant/tenant-verification-response-interface'
+import TenantVerificationResultInterface from './interfaces/tenant/tenant-verification-result-interface'
+import UserLoginDataInterface from './interfaces/user/user-login-data-interface'
+import UserRegistrationResultInterface from './interfaces/user/user-registration-result-interface'
+import UserVerificationResponseInterface from './interfaces/user/user-verification-response-interface'
+import UserVerificationResultInterface from './interfaces/user/user-verification-result-interface'
 
 export default class AuthClient implements AuthClientInterface {
   private baseUri: string
@@ -14,8 +24,10 @@ export default class AuthClient implements AuthClientInterface {
   public async registerTenant(
     email: string,
     password: string
-  ): Promise<TenantRegistrationResult> {
-    const response = await request.json<TenantRegistrationResult>('/tenant', {
+  ): Promise<TenantRegistrationResultInterface> {
+    const response = await request.json<
+      TenantRegistrationResultInterface
+    >('/tenant', {
       baseUrl: this.baseUri,
       method: 'POST',
       body: {
@@ -30,8 +42,10 @@ export default class AuthClient implements AuthClientInterface {
   public async loginTenant(
     email: string,
     password: string
-  ): Promise<AccessTokenResponse> {
-    const response = await request.json<AccessTokenResponse>('/tenant/login', {
+  ): Promise<AccessTokenResponseInterface> {
+    const response = await request.json<
+      AccessTokenResponseInterface
+    >('/tenant/login', {
       baseUrl: this.baseUri,
       method: 'POST',
       body: {
@@ -45,8 +59,10 @@ export default class AuthClient implements AuthClientInterface {
 
   public async verifyTenantToken(
     token: string
-  ): Promise<TenantVerificationResult> {
-    return (await request.json<TenantVerificationResponse>('/tenant/verify', {
+  ): Promise<TenantVerificationResultInterface> {
+    return (await request.json<
+      TenantVerificationResponseInterface
+    >('/tenant/verify', {
       baseUrl: this.baseUri,
       method: 'POST',
       body: {
@@ -56,7 +72,7 @@ export default class AuthClient implements AuthClientInterface {
   }
 
   public async logoutTenant(token: string): Promise<void> {
-    await request.json<TenantVerificationResult>('/tenant/logout', {
+    await request.json<TenantVerificationResultInterface>('/tenant/logout', {
       baseUrl: this.baseUri,
       method: 'POST',
       body: {
@@ -66,10 +82,12 @@ export default class AuthClient implements AuthClientInterface {
   }
 
   public async createUser(
-    userData: AuthUserData,
+    userData: AuthUserDataInterface,
     tenantToken: string
-  ): Promise<UserRegistrationResult> {
-    const response = await request.json<UserRegistrationResult>('/user', {
+  ): Promise<UserRegistrationResultInterface> {
+    const response = await request.json<
+      UserRegistrationResultInterface
+    >('/user', {
       baseUrl: this.baseUri,
       method: 'POST',
       body: userData,
@@ -84,10 +102,10 @@ export default class AuthClient implements AuthClientInterface {
   }
 
   public async loginUser(
-    userData: UserLoginData,
+    userData: UserLoginDataInterface,
     tenantToken: string
-  ): Promise<AccessTokenResponse> {
-    const response = await request.json<AccessTokenResponse>('/auth', {
+  ): Promise<AccessTokenResponseInterface> {
+    const response = await request.json<AccessTokenResponseInterface>('/auth', {
       baseUrl: this.baseUri,
       method: 'POST',
       headers: {
@@ -102,8 +120,10 @@ export default class AuthClient implements AuthClientInterface {
   public async verifyUserToken(
     userToken: string,
     tenantToken: string
-  ): Promise<UserVerificationResult> {
-    return (await request.json<UserVerificationResponse>('/auth/verify', {
+  ): Promise<UserVerificationResultInterface> {
+    return (await request.json<
+      UserVerificationResponseInterface
+    >('/auth/verify', {
       baseUrl: this.baseUri,
       method: 'POST',
       headers: {
