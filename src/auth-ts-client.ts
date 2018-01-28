@@ -10,9 +10,22 @@ import UserRegistrationResultInterface from './interfaces/user/user-registration
 import UserVerificationResponseInterface from './interfaces/user/user-verification-response-interface'
 import UserVerificationResultInterface from './interfaces/user/user-verification-result-interface'
 
+/**
+ * Auth client
+ */
 export default class AuthClient implements AuthClientInterface {
+  /**
+   * Base URL
+   * 
+   * @type {string}
+   */
   private baseUri: string
 
+  /**
+   * Constructor
+   * 
+   * @param {string} baseUrl Base URL
+   */
   constructor(baseUrl?: string) {
     this.baseUri = baseUrl || 'http://auth:3000'
 
@@ -21,6 +34,14 @@ export default class AuthClient implements AuthClientInterface {
     })
   }
 
+  /**
+   * Register tenant
+   * 
+   * @param {string} email Email of tenant
+   * @param {string} password Password of tenant
+   * 
+   * @return {Promise<TenantRegistrationResultInterface>}
+   */
   public async registerTenant(
     email: string,
     password: string
@@ -39,6 +60,14 @@ export default class AuthClient implements AuthClientInterface {
     return response
   }
 
+  /**
+   * Login tenant
+   * 
+   * @param {string} email Email of tenant
+   * @param {string} password Password of tenant
+   * 
+   * @return {Promise<AccessTokenResponseInterface>}
+   */
   public async loginTenant(
     email: string,
     password: string
@@ -57,6 +86,13 @@ export default class AuthClient implements AuthClientInterface {
     return response
   }
 
+  /**
+   * Verify token tenant
+   * 
+   * @param {string} token Token of tenant
+   * 
+   * @return {Promise<TenantVerificationResultInterface>}
+   */
   public async verifyTenantToken(
     token: string
   ): Promise<TenantVerificationResultInterface> {
@@ -71,6 +107,13 @@ export default class AuthClient implements AuthClientInterface {
     })).decoded
   }
 
+  /**
+   * Logout tenant
+   * 
+   * @param {string} token Token of tenant
+   * 
+   * @return {Promise<void>}
+   */
   public async logoutTenant(token: string): Promise<void> {
     await request.json<TenantVerificationResultInterface>('/tenant/logout', {
       baseUrl: this.baseUri,
@@ -81,6 +124,14 @@ export default class AuthClient implements AuthClientInterface {
     })
   }
 
+  /**
+   * Create user
+   * 
+   * @param {AuthUserDataInterface} userData User data
+   * @param {string} tenantToken Token of tenant
+   * 
+   * @return {Promise<UserRegistrationResultInterface>}
+   */
   public async createUser(
     userData: AuthUserDataInterface,
     tenantToken: string
@@ -101,6 +152,14 @@ export default class AuthClient implements AuthClientInterface {
     return response
   }
 
+  /**
+   * Login user
+   * 
+   * @param {UserLoginDataInterface} userData User login data
+   * @param {string} tenantToken Token of tenant
+   * 
+   * @return {Promise<AccessTokenResponseInterface>}
+   */
   public async loginUser(
     userData: UserLoginDataInterface,
     tenantToken: string
@@ -117,6 +176,14 @@ export default class AuthClient implements AuthClientInterface {
     return response
   }
 
+  /**
+   * Verify user token
+   * 
+   * @param {string} userToken Token of user
+   * @param {string} tenantToken Token of tenant
+   * 
+   * @return {Promise<UserVerificationResultInterface>}
+   */
   public async verifyUserToken(
     userToken: string,
     tenantToken: string
@@ -135,6 +202,14 @@ export default class AuthClient implements AuthClientInterface {
     })).decoded
   }
 
+  /**
+   * Logout token
+   * 
+   * @param {string} userToken Token of user
+   * @param {string} tenantToken Token of tenant
+   * 
+   * @return {Promise<void>}
+   */
   public async logoutUser(
     userToken: string,
     tenantToken: string
@@ -151,6 +226,12 @@ export default class AuthClient implements AuthClientInterface {
     })
   }
 
+  /**
+   * Delete user
+   * 
+   * @param {string} userLogin Token of user
+   * @param {string} tenantToken Token of tenant
+   */
   public async deleteUser(
     userLogin: string,
     tenantToken: string
