@@ -35,7 +35,7 @@
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --no-semi --single-quote",
+      "prettier --write --single-quote",
       "git add"
     ]
   },
@@ -76,6 +76,7 @@
   "devDependencies": {
     "@types/jest": "^22.0.0",
     "@types/node": "^8.0.0",
+    "@types/winston": "^2.3.7",
     "colors": "^1.1.2",
     "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
@@ -90,7 +91,7 @@
     "prompt": "^1.0.0",
     "replace-in-file": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.53.0",
+    "rollup": "^0.50.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
@@ -106,6 +107,7 @@
     "validate-commit-msg": "^2.12.2"
   },
   "dependencies": {
-    "web-request": "^1.0.7"
+    "web-request": "^1.0.7",
+    "winston": "^2.4.0"
   }
 }
