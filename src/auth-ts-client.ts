@@ -295,11 +295,11 @@ export default class AuthClient implements AuthClientInterface {
    * Set default logger
    */
   public setDefaultLogger() {
-    let logger = new winston.Logger({
-      level: 'info',
+    winston.configure({
+      level: 'warn',
       transports: [new winston.transports.Console()]
     });
 
-    this.logger = logger;
+    this.logger = winston;
   }
 }
