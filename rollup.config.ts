@@ -16,7 +16,7 @@ export default {
   ],
   sourcemap: true,
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: ["web-request"],
+  external: ["web-request", "winston"],
   watch: {
     include: 'src/**',
   },
