@@ -127,11 +127,6 @@ describe('AuthClient test', () => {
     expect(client).toBeInstanceOf(AuthClient);
   });
 
-  it('Can set custom logger', () => {
-    client.setLogger(new winston.Logger());
-    expect(true);
-  });
-
   it('Register tenant', async () => {
     const result = await client.registerTenant('test@test.com', 'Password1');
     expect(result).toEqual({
@@ -238,5 +233,10 @@ describe('AuthClient test', () => {
     return client.deleteUser('test@test.com', 'jwt-token').then(result => {
       expect(true);
     });
+  });
+
+  it('Can set custom logger', () => {
+    client.setLogger(new winston.Logger());
+    expect(true);
   });
 });
