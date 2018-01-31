@@ -1,6 +1,6 @@
 {
-  "name": "auth-ts-client",
-  "version": "0.1.1",
+  "name": "@jincor-tech/auth-ts-client",
+  "version": "0.1.2",
   "description": "A typescript library which encapsulates interaction with Jincor Auth",
   "keywords": ["library", "client", "sdk", "auth", "jwt"],
   "main": "dist/auth-ts-client.umd.js",

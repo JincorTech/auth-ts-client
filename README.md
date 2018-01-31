@@ -1,6 +1,6 @@
 # Auth client
 
-This is a client library which encapsulates interaction with Jincor Auth. With its help you can:
+This is a client library which encapsulates interaction with [Auth service](https://github.com/JincorTech/backend-auth). With its help you can:
 
 1. Register users and tenants.
 2. Get tokens for users and tenants after authorization.
@@ -8,7 +8,7 @@ This is a client library which encapsulates interaction with Jincor Auth. With i
 4. Deactivate tokens for users and tenants.
 5. Remove users.
 
-The user can be attached to several tenants through the field tenant. It is filled from the tenant's token in the Jincor Auth service.
+The user can be attached to several tenants through the field tenant. It is filled from the tenant's token in the [Auth service](https://github.com/JincorTech/backend-auth) service.
 
 ## Usage
 
@@ -50,8 +50,8 @@ More details can be received in the tests.
 1. Clone the repo
 2. `cd /path/to/repo`
 3. `docker-compose build` - build development containers
-4. `docker-compose exec authclient yarn`
+4. `docker-compose run --rm authclient sh -c "yarn"`
 
 #### Local testing
 
-To run all tests just type `docker-compose exec authclient yarn test`
+To run all tests just type `docker-compose run --rm authclient sh -c "yarn test"`
