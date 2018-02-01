@@ -1,0 +1,10 @@
+version: '2'
+services:
+
+  authclient:
+    build:
+        context: ./
+        dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/lib
+    tty: true

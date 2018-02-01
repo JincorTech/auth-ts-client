@@ -1,0 +1,19 @@
+sudo: required
+services:
+- docker
+script:
+- docker-compose build authclient
+- docker-compose run --rm authclient sh -c "yarn && yarn test"
+notifications:
+  slack:
+    secure: KEXv5ficzsYbTEAy4lsNaur66pV0W6bZ0GW5LfTUsr95vBN+bIpcg89CfYbYKshrA1dduWNHLlASxnXjDGG6XZoFulH3b04/qnRCBmYIFw2IJsdYiagouJwe0IEfAhx9MDxhVYwop3If3aTJeXVRFg3ApHa/Ao1LAaEOGKu53dHxsgTpJ8Ezjek2Kswot0+dKo3xtyDFsWxAwelyaAPpUCopiEOuR+J/YTc4pj4ysLDIjEm4sgv2PYFb3d6mylwkWTzy3rEXhYVR5KDXT12cVpcr8QVgoXynmXdbGWNj6Mr6vzjYk5GbhkMvCtcfGq+whB7cU0GRwKMIGAF7Fk6J9zsb8RdbN943mflPY35STTaL7rGxuh/A2HZjafDeNh0y2l5YmFxgUEG3OVXyA5HZaoV9TWhIRy9UVHtChWWHI7UuL5NFonjsFMcNBV8OcTw41t0yuqrbrPgFCXT7zTF4fW3YQz61oKAvmarxng41ixZyxdbJU6/dnHKpXUu0aET+OnMqloPE1g/wcWOM6zKy8tIOnvBD6ZUuq3DpOrgyAQxTKXDnEKojNEgiYRJZSpDnNyhM+Ou9yMTkYVKaANFW+or1JBBEma20TDJuCkuq1OpcC6H0CQfBHMzr/3557qonr7U9JXxgYXLkyBfWXd5KgSHebJNlCwlKF+4p0x0Tm84=
+before_deploy: "docker-compose run --rm authclient sh -c 'yarn build'"
+deploy:
+  provider: npm
+  email: aleserche@gmail.com
+  api_key:
+    secure: EDEOAz2Yabxjqzpke1Ezhf+lh7+hM4eCKEvF5GE0qBULqk3gI2/KfgwU9ri0LHkqqBxcMPlZ2VfngMSeudQ+BJEJdj/rylIp8rM4kU0Eq4DpJkq5/hueCB4JJZs7BA3SDa9LWZkk/nYZHOpGN3ZIBJBYa9abh5IvFXFHnqcMnToAxbFH3vWg3QT3SQzLDvnVd5gHqrJycn8woiqtoCWDNZB0sRws5ZmBApbSc+ytkcQ/m/AZ4C+ojMWC5cYtxgGj6QXZolZtLXbeqVEw7VqJfn9/fZSn6vtjHOGrhMW7Nf+uU4fUPM6pdFmqI/TBm01UjeOj1Bi89YPNfo4tyiz9ATJvFFqR1lwfpk6U4HjbZ9K9vhWl8qOcA3+BaAbD7IHRqFjyfg5efMIigMyH/u5eVCgIpElXQG6KuTOQHj2qAHhbppki5iwI1R4tnSYDwcYrE73OKkvTL79Gjnk3DZhlfTzC3JITBU3c8rhpIUfZMe8or0GEe42yjNpYR3p/vBQ2vFbEnAdTb3WeludqAyZZe2OpVglQmGBQ5Yn48HFaRsG0QbHYHZoRgT301oXm8O+vx6qlUvb5hS1Jj4VC/hOsTbvJz/BTocVQNxkPrVIga0IdHp5VQp5HJQwpxckxwLvPLzmahAYR+H12WuPNdxWeNcVVwmCbYi/rvqnoVZa3pmY=
+  on:
+    tags: true
+    repo: JincorTech/auth-ts-client
+    branch: develop
