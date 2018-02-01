@@ -1,8 +1,14 @@
 {
   "name": "@jincor-tech/auth-ts-client",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A typescript library which encapsulates interaction with Jincor Auth",
-  "keywords": ["library", "client", "sdk", "auth", "jwt"],
+  "keywords": [
+    "library",
+    "client",
+    "sdk",
+    "auth",
+    "jwt"
+  ],
   "main": "dist/auth-ts-client.umd.js",
   "module": "dist/auth-ts-client.es5.js",
   "typings": "dist/types/auth-ts-client.d.ts",
@@ -12,7 +18,7 @@
   "author": "aleserche <aleserche@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JincorTech/auth-ts-client"
+    "url": "git+https://github.com/JincorTech/auth-ts-client.git"
   },
   "license": "MIT",
   "engines": {
@@ -109,5 +115,12 @@
   "dependencies": {
     "web-request": "^1.0.7",
     "winston": "^2.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/JincorTech/auth-ts-client/issues"
+  },
+  "homepage": "https://github.com/JincorTech/auth-ts-client#readme",
+  "directories": {
+    "test": "test"
   }
 }
